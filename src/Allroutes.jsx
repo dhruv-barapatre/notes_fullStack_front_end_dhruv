@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import SignIn from "./pages/Signin";
-import {SignUp} from "./pages/SignUp";
 import Home from "./pages/Home";
 import Notespage from "./pages/Notespage";
 import Updatenotes from "./pages/Updatenotes";
@@ -9,6 +8,7 @@ import Notesdescription from "./pages/Notesdescription";
 import PrivatePage from "./PrivatePage";
 import Create from "./pages/Create";
 import Notesbyadmin from "./pages/Notesbyadmin";
+import { SignUp } from "./pages/Signup";
 const Allroutes = () => {
   return (
     <Routes>

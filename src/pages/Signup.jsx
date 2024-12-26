@@ -20,7 +20,7 @@ export function SignUp() {
       .then((res) => {
         console.log(res.data);
         toast.success("Sign up successful");
-        
+
       })
       .catch((err) => {
         console.log(err);
