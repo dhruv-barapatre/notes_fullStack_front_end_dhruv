@@ -1,25 +1,24 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios, { Axios } from "axios";
-import { toast,ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 export default function SignIn() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const handlesubmit = (e) => {
     e.preventDefault();
-    axios.post(`${import.meta.env.VITE_URL}signin`,{
-      email: email,
-      password: password
-    },{
-      withCredentials:true
+    axios.post(`${import.meta.env.VITE_URL}api/signin`, {
+      email, password
+    }, {
+      withCredentials: true
     })
-      .then((res)=>{
+      .then((res) => {
         navigate("/")
         toast.success(res.data.message)
-        localStorage.setItem("User",JSON.stringify(res.data))
+        localStorage.setItem("User", JSON.stringify(res.data))
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
         toast.error(err.res.message)
       })
