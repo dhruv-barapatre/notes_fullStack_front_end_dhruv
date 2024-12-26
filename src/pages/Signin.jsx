@@ -8,7 +8,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const handlesubmit = (e) => {
     e.preventDefault();
-    axios.post(`${import.meta.env.VITE_URL}api/signin`, {
+    axios.post(`${import.meta.env.VITE_URL}signin`, {
       email, password
     }, {
       withCredentials: true
