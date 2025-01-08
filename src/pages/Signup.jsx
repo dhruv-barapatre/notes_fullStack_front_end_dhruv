@@ -3,30 +3,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-export function SignUp() {
-  const [name, setname] = useState("");
+export default function SignUp() {
+  const [name, setname] = useState(""); 
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${import.meta.env.VITE_URL}signup`, {
-      email: email,
-      password: password,
-      name: name
-    }, {
-      withCredentials: true
-    })
-      .then((res) => {
-        console.log(res.data);
-        toast.success("Sign up successful");
-
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-
+    //logic
   };
+
   return (
     <section style={{ backgroundColor: "#eee", minHeight: "100vh" }}>
       <div className="container py-3">
@@ -59,6 +46,7 @@ export function SignUp() {
                           required
                         />
                       </div>
+
                       <div className="mb-3">
                         <input
                           type="password"

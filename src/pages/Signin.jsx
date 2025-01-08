@@ -1,28 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios, { Axios } from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
+import { toast } from "react-toastify";
 export default function SignIn() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
-  const handlesubmit = (e) => {
-    e.preventDefault();
-    axios.post(`${import.meta.env.VITE_URL}signin`, {
-      email, password
-    }, {
-      withCredentials: true
-    })
-      .then((res) => {
-        navigate("/")
-        toast.success(res.data.message)
-        localStorage.setItem("User", JSON.stringify(res.data))
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.res.message)
-      })
-  };
+  const handlesubmit = (e) => {};
   return (
     <div
       className="min-vh-100 d-flex align-items-center justify-content-center"
@@ -36,13 +20,17 @@ export default function SignIn() {
     >
       <div
         className="container p-4 bg-white rounded shadow-lg d-flex flex-column align-items-center gap-4"
-        style={{ maxWidth: "400px", opacity: 0.95 }}>
+        style={{ maxWidth: "400px", opacity: 0.95 }}
+      >
         <div className="text-center mb-4">
           <h2 className="font-weight-bold text-dark">Sign In</h2>
           <p className="text-muted">Access your account</p>
         </div>
+
+        {/* Right Section (Form) */}
         <div className="w-100">
           <form className="d-flex flex-column gap-3" onSubmit={handlesubmit}>
+            {/* Email Input */}
             <div className="form-group">
               <label htmlFor="email" className="form-label">
                 Your email
@@ -56,6 +44,8 @@ export default function SignIn() {
                 placeholder="name@company.com"
               />
             </div>
+
+            {/* Password Input */}
             <div className="form-group">
               <label htmlFor="password" className="form-label">
                 Your password
@@ -69,10 +59,14 @@ export default function SignIn() {
                 placeholder="**********"
               />
             </div>
+
+            {/* Submit Button */}
             <button type="submit" className="btn btn-primary w-100">
               Sign In
             </button>
           </form>
+
+          {/* Sign-Up Link */}
           <div className="text-center small mt-3">
             <span>Don't have an account? </span>
             <Link to="/sign-up" className="text-primary">

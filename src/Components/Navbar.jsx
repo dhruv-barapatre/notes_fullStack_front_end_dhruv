@@ -1,37 +1,17 @@
 import { Link } from "react-router-dom";
-import { AiOutlineSearch } from "react-icons/ai";
-import { useCookies } from "react-cookie";
-import axios from "axios";
-import { toast } from "react-toastify";
 
 export default function Navbar() {
-
-
-  const deleteNotes=()=>{
-axios.delete(`${import.meta.env.VITE_URL}notes/deleteAllnotes`,{
-  withCredentials:true
-}).then((res)=>{
-  toast.success(res.data.message)
-}).catch((err)=>{
-  console.log(err);
-  toast.error(res.data.message)
-})
-  }
-
-
-  const Userid = JSON.parse(localStorage.getItem("User"))
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div className="container">
         <Link to="/" className="navbar-brand font-weight-bold">
           Home
         </Link>
+
         <Link to="/notes" className="navbar-brand font-weight-bold">
           Notes
         </Link>
-        <Link to="/createnotes" className="navbar-brand font-weight-bold">
-          CreateNotes
-        </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -43,6 +23,7 @@ axios.delete(`${import.meta.env.VITE_URL}notes/deleteAllnotes`,{
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="d-flex ms-auto">
             <input
@@ -51,7 +32,9 @@ axios.delete(`${import.meta.env.VITE_URL}notes/deleteAllnotes`,{
               placeholder="Search..."
               aria-label="Search"
             />
+           
           </div>
+
           <ul className="navbar-nav ms-auto align-items-center gap-2">
             <li className="nav-item dropdown">
               <a
@@ -85,30 +68,14 @@ axios.delete(`${import.meta.env.VITE_URL}notes/deleteAllnotes`,{
                 </li>
                 <li>
                   <button className="dropdown-item">Sign out</button>
-                </li>
-              </ul>
+                </li> </ul>
             </li>
+
             <li className="nav-item">
               <Link to="/sign-in" className="btn btn-outline-primary">
                 Sign In
               </Link>
             </li>
-            {
-              Userid?.role=="admin" &&
-              <div style={{display:"flex"}}>
-              <li className="nav-item">
-                <Link to="/getadminnotes" className="btn btn-outline-primary">
-                GetAllnotes
-                </Link>
-              </li>
-              <li className="nav-item">
-                <button  className="btn btn-outline-primary"  style={{marginLeft:'10px'}}  onClick={()=>deleteNotes()} >
-                DeleteAllNotes
-                </button>
-              </li>
-              </div>
-            }
-
           </ul>
         </div>
       </div>
