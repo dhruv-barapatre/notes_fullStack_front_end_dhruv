@@ -6,7 +6,27 @@ export default function SignIn() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
-  const handlesubmit = (e) => {};
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:8080/user/signin",
+        { email, password },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Server Is not reachable.....");
+        }
+      });
+  };
   return (
     <div
       className="min-vh-100 d-flex align-items-center justify-content-center"

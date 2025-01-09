@@ -4,14 +4,32 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 export default function SignUp() {
-  const [name, setname] = useState(""); 
+  const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //logic
+
+    axios
+      .post(
+        "http://localhost:8080/user/signup",
+        { name, email, password },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Server Is not reachable.....");
+        }
+      });
   };
 
   return (

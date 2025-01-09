@@ -5,6 +5,7 @@ import "./App.css";
 import Allroutes from "./Allroutes";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
       <Allroutes />
       <Footer />
+      <ToastContainer />
     </>
   );
 }
